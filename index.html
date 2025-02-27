@@ -189,7 +189,7 @@
       margin: 10px auto;
       border-radius: 5px;
     }
-    /* تصميم بطاقة الشهادة */
+    /* شبكة عرض الشهادات */
     .certificates-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -212,6 +212,7 @@
     .certificate-card h3 {
       margin: 15px 0 10px;
       color: var(--primary-color);
+      font-size: 1.1em;
     }
     .btn-certificate {
       display: inline-block;
@@ -221,6 +222,7 @@
       text-decoration: none;
       border-radius: 5px;
       transition: background 0.3s;
+      font-size: 0.9em;
     }
     .btn-certificate:hover {
       background: var(--secondary-color);
@@ -350,16 +352,12 @@
     </div>
   </section>
 
-  <!-- قسم الشهادات بتصميم البطاقة -->
+  <!-- قسم الشهادات مع شبكة البطاقات -->
   <section id="certifications">
     <div class="container">
       <h2 id="certifications-title">الشهادات</h2>
-      <div class="certificates-grid">
-        <div class="certificate-card">
-          <img src="https://via.placeholder.com/300x200?text=Certificate" alt="Certificate">
-          <h3 id="certificate-card-title">Python Essentials</h3>
-          <a id="certificate-card-btn" href="https://www.credly.com/badges/e53eb017-ca58-471e-b097-c90a9b80a076/linked_in_profile" target="_blank" class="btn-certificate">عرض الشهادة</a>
-        </div>
+      <div class="certificates-grid" id="certificates-grid">
+        <!-- سيتم تعبئة البطاقات ديناميكياً -->
       </div>
     </div>
   </section>
@@ -395,8 +393,18 @@
           skillsTitle: "المهارات",
           skillsList: ["🔹 حل المشكلات بطرق مبتكرة", "🤖 الذكاء الاصطناعي التوليدي", "🚀 تحسين الكود وتطويره"],
           certificationsTitle: "الشهادات",
-          certificateTitle: "Python Essentials",
           certificateBtn: "عرض الشهادة",
+          // مصفوفة الشهادات مع العناوين والروابط والصورة الافتراضية
+          certificates: [
+            { title: "Code Generation and Optimization Using IBM Granite", link: "https://www.credly.com/badges/e53eb017-ca58-471e-b097-c90a9b80a076/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Python Essentials", link: "https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Computer Hardware Basics", link: "https://www.credly.com/badges/5074f906-b916-4635-8168-3613662b924c/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Ethical Hacker", link: "https://www.credly.com/badges/d79f63b6-2442-4f50-8bab-c14ceb9b16c1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Additional Certificate 1", link: "https://www.credly.com/badges/e9cb4b0d-03f9-4eb7-b20b-d384239cce44/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Additional Certificate 2", link: "https://www.credly.com/badges/44f9f862-3066-482f-b936-c80ecd403417/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" }
+          ],
           contactTitle: "تواصل معي",
           linkedin: "ملفي على LinkedIn",
           footerText: "&copy; 2025 يزيد البلوي. جميع الحقوق محفوظة.",
@@ -418,8 +426,17 @@
           skillsTitle: "Skills",
           skillsList: ["🔹 Problem Solving", "🤖 Generative AI", "🚀 Code Optimization"],
           certificationsTitle: "Certifications",
-          certificateTitle: "Python Essentials",
           certificateBtn: "View Certificate",
+          certificates: [
+            { title: "Code Generation and Optimization Using IBM Granite", link: "https://www.credly.com/badges/e53eb017-ca58-471e-b097-c90a9b80a076/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Python Essentials", link: "https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Computer Hardware Basics", link: "https://www.credly.com/badges/5074f906-b916-4635-8168-3613662b924c/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Ethical Hacker", link: "https://www.credly.com/badges/d79f63b6-2442-4f50-8bab-c14ceb9b16c1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Additional Certificate 1", link: "https://www.credly.com/badges/e9cb4b0d-03f9-4eb7-b20b-d384239cce44/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Additional Certificate 2", link: "https://www.credly.com/badges/44f9f862-3066-482f-b936-c80ecd403417/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" }
+          ],
           contactTitle: "Contact Me",
           linkedin: "My LinkedIn Profile",
           footerText: "&copy; 2025 Yazeed Albalawi. All rights reserved.",
@@ -437,7 +454,7 @@
       
       let currentLang = "ar";
       
-      // دالة تحديث النصوص بناءً على اللغة
+      // دالة تحديث النصوص والمحتوى بناءً على اللغة
       function updateLanguage() {
         const t = texts[currentLang];
         document.getElementById("name").innerHTML = t.name;
@@ -453,8 +470,17 @@
           skillsList.appendChild(li);
         });
         document.getElementById("certifications-title").innerHTML = t.certificationsTitle;
-        document.getElementById("certificate-card-title").innerHTML = t.certificateTitle;
-        document.getElementById("certificate-card-btn").innerHTML = t.certificateBtn;
+        // تحديث شبكة الشهادات
+        const certificatesGrid = document.getElementById("certificates-grid");
+        certificatesGrid.innerHTML = "";
+        t.certificates.forEach(cert => {
+          const card = document.createElement("div");
+          card.className = "certificate-card";
+          card.innerHTML = `<img src="${cert.img}" alt="${cert.title}">
+                            <h3>${cert.title}</h3>
+                            <a href="${cert.link}" target="_blank" class="btn-certificate">${t.certificateBtn}</a>`;
+          certificatesGrid.appendChild(card);
+        });
         document.getElementById("contact-title").innerHTML = t.contactTitle;
         document.getElementById("linkedin").innerHTML = t.linkedin;
         document.getElementById("footer-text").innerHTML = t.footerText;
@@ -518,7 +544,7 @@
       }, observerOptions);
       sections.forEach(section => { observer.observe(section); });
       
-      // تحديث النصوص في البداية
+      // تحديث النصوص والمحتوى عند بدء التشغيل
       updateLanguage();
     });
   </script>
