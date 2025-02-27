@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>يزيد البلوي | Portfolio</title>
+  <style>
+    /* المتغيرات الأساسية للثيم الفاتح */
+    :root {
+      --primary-color: #0077b6;
+      --secondary-color: #00b4d8;
+      --light-bg: #f5f5f5;
+      --dark-bg: #1a1a1a;
+      --white: #ffffff;
+      --text-color: #333;
+      --text-dark: #ddd;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --nav-text: #333;
+    }
+    /* إعدادات الثيم الداكن */
+    .dark-mode {
+      --primary-color: #90e0ef;
+      --secondary-color: #caf0f8;
+      --light-bg: #1a1a1a;
+      --white: #333;
+      --text-color: #ddd;
+      --nav-bg: rgba(26, 26, 26, 0.95);
+      --nav-text: #ddd;
+    }
+    /* إعادة تعيين الأنماط */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      direction: rtl;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    /* قائمة التنقل */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--nav-bg);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    nav .logo a {
+      text-decoration: none;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: var(--nav-text);
+    }
+    nav .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav .nav-links li a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav .nav-links li a:hover {
+      color: var(--primary-color);
+    }
+    /* أزرار التبديل */
+    .toggle-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .toggle-buttons button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      background: var(--primary-color);
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 0.9em;
+    }
+    .toggle-buttons button:hover {
+      background: var(--secondary-color);
+    }
+    /* أيقونة الهامبرغر (للأجهزة المحمولة) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--nav-text);
+      border-radius: 2px;
+    }
+    /* الهيدر بخلفية متحركة */
+    header {
+      position: relative;
+      overflow: hidden;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 60px; /* لتفادي شريط التنقل */
+    }
+    /* خلفية متحركة باستخدام تدرج متحرك */
+    .header-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      z-index: -1;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header .container {
+      position: relative;
+      z-index: 1;
+      color: var(--white);
+    }
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease-out;
+    }
+    header p {
+      font-size: 1.3em;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+    /* الحاوية الأساسية */
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    /* الأقسام */
+    section {
+      margin: 40px 0;
+      padding: 30px;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+    }
+    section h2::after {
+      content: "";
+      width: 60px;
+      height: 3px;
+      background: var(--secondary-color);
+      display: block;
+      margin: 10px auto;
+      border-radius: 5px;
+    }
+    section ul {
+      list-style: none;
+      padding: 0;
+    }
+    section li {
+      background: var(--light-bg);
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+    /* الفوتر */
+    footer {
+      background: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    /* زر العودة للأعلى */
+    #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    #back-to-top:hover {
+      background: var(--secondary-color);
+    }
+    /* تأثيرات الحركة */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* استجابة للأجهزة المحمولة */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      nav .nav-links {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: var(--nav-bg);
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        box-shadow: -2px 2px 10px rgba(0,0,0,0.1);
+      }
+      nav .nav-links.active {
+        display: flex;
+      }
+      nav .nav-links li {
+        padding: 10px;
+        text-align: right;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- قائمة التنقل -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="#home" id="nav-home">الرئيسية</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" id="nav-home">الرئيسية</a></li>
+        <li><a href="#about" id="nav-about">من أنا</a></li>
+        <li><a href="#skills" id="nav-skills">المهارات</a></li>
+        <li><a href="#certifications" id="nav-certifications">الشهادات</a></li>
+        <li><a href="#contact" id="nav-contact">تواصل معي</a></li>
+      </ul>
+      <div class="toggle-buttons">
+        <button id="lang-toggle">English</button>
+        <button id="theme-toggle">الوضع الداكن</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- الهيدر بخلفية متحركة -->
+  <header id="home">
+    <div class="header-bg"></div>
+    <div class="container">
+      <h1 id="name">يزيد البلوي</h1>
+      <p id="job-title">طالب علوم الحاسب - جامعة تبوك</p>
+    </div>
+  </header>
+
+  <!-- قسم "من أنا" -->
+  <section id="about">
+    <div class="container">
+      <h2 id="about-title">من أنا؟</h2>
+      <p id="about-text">
+        أنا طالب في جامعة تبوك، أدرس علوم الحاسب. لدي شغف بالتقنية والبرمجة، وأسعى دائمًا لتطوير مهاراتي في تصميم وتطوير المواقع وتطبيقات الويب.
+      </p>
+    </div>
+  </section>
+
+  <!-- قسم المهارات -->
+  <section id="skills">
+    <div class="container">
+      <h2 id="skills-title">المهارات</h2>
+      <ul id="skills-list">
+        <li>🔹 حل المشكلات بطرق مبتكرة</li>
+        <li>🤖 الذكاء الاصطناعي التوليدي</li>
+        <li>🚀 تحسين الكود وتطويره</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- قسم الشهادات -->
+  <section id="certifications">
+    <div class="container">
+      <h2 id="certifications-title">الشهادات</h2>
+      <ul id="certifications-list">
+        <!-- سيتم تعبئة هذا القسم ديناميكياً -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- قسم التواصل -->
+  <section id="contact">
+    <div class="container">
+      <h2 id="contact-title">تواصل معي</h2>
+      <p>📧 <a href="mailto:yazeeddd81@gmail.com" id="email">yazeeddd81@gmail.com</a></p>
+      <p>🔗 <a href="https://www.linkedin.com/in/yazeed-albalawi-144922330" target="_blank" id="linkedin">ملفي على LinkedIn</a></p>
+    </div>
+  </section>
+
+  <!-- الفوتر -->
+  <footer>
+    <div class="container">
+      <p id="footer-text">&copy; 2025 يزيد البلوي. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <!-- زر العودة للأعلى -->
+  <button id="back-to-top">&#8679;</button>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // إعدادات اللغات والثيم
+      const texts = {
+        ar: {
+          name: "يزيد البلوي",
+          jobTitle: "طالب علوم الحاسب - جامعة تبوك",
+          aboutTitle: "من أنا؟",
+          aboutText: "أنا طالب في جامعة تبوك، أدرس علوم الحاسب. لدي شغف بالتقنية والبرمجة، وأسعى دائمًا لتطوير مهاراتي في تصميم وتطوير المواقع وتطبيقات الويب.",
+          skillsTitle: "المهارات",
+          skillsList: ["🔹 حل المشكلات بطرق مبتكرة", "🤖 الذكاء الاصطناعي التوليدي", "🚀 تحسين الكود وتطويره"],
+          certificationsTitle: "الشهادات",
+          certificationsList: [
+            '<a href="https://www.credly.com/badges/e53eb017-ca58-471e-b097-c90a9b80a076/linked_in_profile" target="_blank">Python Essentials 1</a>',
+            '<a href="https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile" target="_blank">Python Essentials 2</a>',
+            '<a href="https://www.credly.com/badges/5074f906-b916-4635-8168-3613662b924c/linked_in_profile" target="_blank">أساسيات العتاد الحاسوبي</a>',
+            '<a href="https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile" target="_blank">JavaScript Essentials</a>',
+            '<a href="https://www.credly.com/badges/d79f63b6-2442-4f50-8bab-c14ceb9b16c1/linked_in_profile" target="_blank">Ethical Hacker</a>',
+            '<a href="https://www.credly.com/badges/e9cb4b0d-03f9-4eb7-b20b-d384239cce44/linked_in_profile" target="_blank">شهادة إضافية 1</a>',
+            '<a href="https://www.credly.com/badges/44f9f862-3066-482f-b936-c80ecd403417/linked_in_profile" target="_blank">شهادة إضافية 2</a>'
+          ],
+          contactTitle: "تواصل معي",
+          linkedin: "ملفي على LinkedIn",
+          footerText: "&copy; 2025 يزيد البلوي. جميع الحقوق محفوظة.",
+          nav: {
+            home: "الرئيسية",
+            about: "من أنا",
+            skills: "المهارات",
+            certifications: "الشهادات",
+            contact: "تواصل معي"
+          },
+          langToggle: "English",
+          themeToggle: "الوضع الداكن"
+        },
+        en: {
+          name: "Yazeed Albalawi",
+          jobTitle: "Computer Science Student - Tabuk University",
+          aboutTitle: "About Me",
+          aboutText: "I am a Computer Science student at Tabuk University passionate about technology and programming. I continuously work on enhancing my skills in web design and development.",
+          skillsTitle: "Skills",
+          skillsList: ["🔹 Problem Solving", "🤖 Generative AI", "🚀 Code Optimization"],
+          certificationsTitle: "Certifications",
+          certificationsList: [
+            '<a href="https://www.credly.com/badges/e53eb017-ca58-471e-b097-c90a9b80a076/linked_in_profile" target="_blank">Python Essentials 1</a>',
+            '<a href="https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile" target="_blank">Python Essentials 2</a>',
+            '<a href="https://www.credly.com/badges/5074f906-b916-4635-8168-3613662b924c/linked_in_profile" target="_blank">Computer Hardware Basics</a>',
+            '<a href="https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile" target="_blank">JavaScript Essentials</a>',
+            '<a href="https://www.credly.com/badges/d79f63b6-2442-4f50-8bab-c14ceb9b16c1/linked_in_profile" target="_blank">Ethical Hacker</a>',
+            '<a href="https://www.credly.com/badges/e9cb4b0d-03f9-4eb7-b20b-d384239cce44/linked_in_profile" target="_blank">Additional Certificate 1</a>',
+            '<a href="https://www.credly.com/badges/44f9f862-3066-482f-b936-c80ecd403417/linked_in_profile" target="_blank">Additional Certificate 2</a>'
+          ],
+          contactTitle: "Contact Me",
+          linkedin: "My LinkedIn Profile",
+          footerText: "&copy; 2025 Yazeed Albalawi. All rights reserved.",
+          nav: {
+            home: "Home",
+            about: "About",
+            skills: "Skills",
+            certifications: "Certifications",
+            contact: "Contact"
+          },
+          langToggle: "العربية",
+          themeToggle: "Dark Mode"
+        }
+      };
+      
+      let currentLang = "ar";
+      
+      // دالة تحديث النصوص بناءً على اللغة
+      function updateLanguage() {
+        const t = texts[currentLang];
+        document.getElementById("name").innerHTML = t.name;
+        document.getElementById("job-title").innerHTML = t.jobTitle;
+        document.getElementById("about-title").innerHTML = t.aboutTitle;
+        document.getElementById("about-text").innerHTML = t.aboutText;
+        document.getElementById("skills-title").innerHTML = t.skillsTitle;
+        const skillsList = document.getElementById("skills-list");
+        skillsList.innerHTML = "";
+        t.skillsList.forEach(skill => {
+          const li = document.createElement("li");
+          li.textContent = skill;
+          skillsList.appendChild(li);
+        });
+        document.getElementById("certifications-title").innerHTML = t.certificationsTitle;
+        const certificationsList = document.getElementById("certifications-list");
+        certificationsList.innerHTML = "";
+        t.certificationsList.forEach(cert => {
+          const li = document.createElement("li");
+          li.innerHTML = cert;
+          certificationsList.appendChild(li);
+        });
+        document.getElementById("contact-title").innerHTML = t.contactTitle;
+        document.getElementById("linkedin").innerHTML = t.linkedin;
+        document.getElementById("footer-text").innerHTML = t.footerText;
+        // تحديث عناصر شريط التنقل
+        document.querySelectorAll("#nav-home").forEach(el => el.textContent = t.nav.home);
+        document.getElementById("nav-about").textContent = t.nav.about;
+        document.getElementById("nav-skills").textContent = t.nav.skills;
+        document.getElementById("nav-certifications").textContent = t.nav.certifications;
+        document.getElementById("nav-contact").textContent = t.nav.contact;
+        // تحديث أزرار التبديل
+        document.getElementById("lang-toggle").textContent = t.langToggle;
+        document.getElementById("theme-toggle").textContent = t.themeToggle;
+      }
+      
+      // زر تبديل اللغة
+      document.getElementById("lang-toggle").addEventListener("click", function() {
+        currentLang = currentLang === "ar" ? "en" : "ar";
+        document.documentElement.lang = currentLang;
+        updateLanguage();
+      });
+      
+      // زر تبديل الثيم (فاتح/داكن)
+      const themeToggle = document.getElementById("theme-toggle");
+      themeToggle.addEventListener("click", function() {
+        document.body.classList.toggle("dark-mode");
+        const isDark = document.body.classList.contains("dark-mode");
+        const t = texts[currentLang];
+        themeToggle.textContent = isDark ? (currentLang === "ar" ? "الوضع الفاتح" : "Light Mode") : t.themeToggle;
+      });
+      
+      // تفعيل قائمة الهامبرغر للأجهزة المحمولة
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+      hamburger.addEventListener("click", function() {
+        navLinks.classList.toggle("active");
+      });
+      
+      // زر العودة للأعلى
+      const backToTop = document.getElementById("back-to-top");
+      window.addEventListener("scroll", function() {
+        if (window.pageYOffset > 300) {
+          backToTop.style.display = "flex";
+        } else {
+          backToTop.style.display = "none";
+        }
+      });
+      backToTop.addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      
+      // تأثير ظهور الأقسام عند التمرير باستخدام IntersectionObserver
+      const sections = document.querySelectorAll("section");
+      const observerOptions = { threshold: 0.2 };
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      sections.forEach(section => { observer.observe(section); });
+      
+      // تحديث النصوص في البداية
+      updateLanguage();
+    });
+  </script>
+</body>
+</html>
