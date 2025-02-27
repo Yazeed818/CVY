@@ -231,6 +231,41 @@
       transform: translateY(-5px);
       box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
+    /* شبكة عرض المهارات */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .skill-card {
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .skill-card img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+    .skill-card h3 {
+      font-size: 1em;
+      margin-bottom: 5px;
+      color: var(--primary-color);
+    }
+    .skill-card p {
+      font-size: 0.85em;
+      color: var(--text-color);
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
     /* الفوتر */
     footer {
       background: var(--primary-color);
@@ -340,15 +375,13 @@
     </div>
   </section>
 
-  <!-- قسم المهارات -->
+  <!-- قسم المهارات مع شبكة البطاقات -->
   <section id="skills">
     <div class="container">
       <h2 id="skills-title">المهارات</h2>
-      <ul id="skills-list">
-        <li>🔹 حل المشكلات بطرق مبتكرة</li>
-        <li>🤖 الذكاء الاصطناعي التوليدي</li>
-        <li>🚀 تحسين الكود وتطويره</li>
-      </ul>
+      <div class="skills-grid" id="skills-grid">
+        <!-- سيتم تعبئة بطاقات المهارات ديناميكياً -->
+      </div>
     </div>
   </section>
 
@@ -357,7 +390,7 @@
     <div class="container">
       <h2 id="certifications-title">الشهادات</h2>
       <div class="certificates-grid" id="certificates-grid">
-        <!-- سيتم تعبئة البطاقات ديناميكياً -->
+        <!-- سيتم تعبئة بطاقات الشهادات ديناميكياً -->
       </div>
     </div>
   </section>
@@ -391,16 +424,35 @@
           aboutTitle: "من أنا؟",
           aboutText: "أنا طالب في جامعة تبوك، أدرس علوم الحاسب. لدي شغف بالتقنية والبرمجة، وأسعى دائمًا لتطوير مهاراتي في تصميم وتطوير المواقع وتطبيقات الويب.",
           skillsTitle: "المهارات",
-          skillsList: ["🔹 حل المشكلات بطرق مبتكرة", "🤖 الذكاء الاصطناعي التوليدي", "🚀 تحسين الكود وتطويره"],
+          // مصفوفة بطاقات المهارات
+          skillsData: [
+            { title: "Problem Solving", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Generative AI", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Code Optimization", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Code Generation", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Analytical Skills", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "تحليل البيانات", company: "Data Analytics Essentials" },
+            { title: "البرمجة", company: "University of Tabuk" },
+            { title: "Python Essentials 1", company: "Python Essentials 1" },
+            { title: "JavaScript Essentials 1", company: "JavaScript Essentials 1" },
+            { title: "أجهزة كمبيوتر", company: "Computer Hardware Basics - University of Tabuk" },
+            { title: "Object-Oriented Programming (OOP)", company: "University of Tabuk" },
+            { title: "Writing Scripts Programming", company: "Python Essentials 1 / JavaScript Essentials 1" },
+            { title: "Python Essentials 2", company: "Python Essentials 2" },
+            { title: "Python", company: "Python Essentials 1 & 2" },
+            { title: "Java", company: "University of Tabuk" },
+            { title: "الإنجليزية", company: "" },
+            { title: "إدارة خدمة تقنية المعلومات", company: "" }
+          ],
           certificationsTitle: "الشهادات",
           certificateBtn: "عرض الشهادة",
           // مصفوفة الشهادات مع العناوين والروابط والصورة الافتراضية
           certificates: [
             { title: "Code Generation and Optimization Using IBM Granite", link: "https://www.credly.com/badges/e53eb017-ca58-471e-b097-c90a9b80a076/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
-            { title: "Python Essentials", link: "https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Python Essentials 1", link: "https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Computer Hardware Basics", link: "https://www.credly.com/badges/5074f906-b916-4635-8168-3613662b924c/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
-            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
-            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials 1", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials 1", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Ethical Hacker", link: "https://www.credly.com/badges/d79f63b6-2442-4f50-8bab-c14ceb9b16c1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Additional Certificate 1", link: "https://www.credly.com/badges/e9cb4b0d-03f9-4eb7-b20b-d384239cce44/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Additional Certificate 2", link: "https://www.credly.com/badges/44f9f862-3066-482f-b936-c80ecd403417/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" }
@@ -424,15 +476,33 @@
           aboutTitle: "About Me",
           aboutText: "I am a Computer Science student at Tabuk University passionate about technology and programming. I continuously work on enhancing my skills in web design and development.",
           skillsTitle: "Skills",
-          skillsList: ["🔹 Problem Solving", "🤖 Generative AI", "🚀 Code Optimization"],
+          skillsData: [
+            { title: "Problem Solving", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Generative AI", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Code Optimization", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Code Generation", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Analytical Skills", company: "Code Generation and Optimization Using IBM Granite" },
+            { title: "Data Analysis", company: "Data Analytics Essentials" },
+            { title: "Programming", company: "University of Tabuk" },
+            { title: "Python Essentials 1", company: "Python Essentials 1" },
+            { title: "JavaScript Essentials 1", company: "JavaScript Essentials 1" },
+            { title: "Computers", company: "Computer Hardware Basics - University of Tabuk" },
+            { title: "Object-Oriented Programming (OOP)", company: "University of Tabuk" },
+            { title: "Writing Scripts Programming", company: "Python Essentials 1 / JavaScript Essentials 1" },
+            { title: "Python Essentials 2", company: "Python Essentials 2" },
+            { title: "Python", company: "Python Essentials 1 & 2" },
+            { title: "Java", company: "University of Tabuk" },
+            { title: "English", company: "" },
+            { title: "IT Service Management", company: "" }
+          ],
           certificationsTitle: "Certifications",
           certificateBtn: "View Certificate",
           certificates: [
             { title: "Code Generation and Optimization Using IBM Granite", link: "https://www.credly.com/badges/e53eb017-ca58-471e-b097-c90a9b80a076/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
-            { title: "Python Essentials", link: "https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "Python Essentials 1", link: "https://www.credly.com/badges/6aa03128-ded5-4558-9a41-92621ec153ea/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Computer Hardware Basics", link: "https://www.credly.com/badges/5074f906-b916-4635-8168-3613662b924c/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
-            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
-            { title: "JavaScript Essentials", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials 1", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
+            { title: "JavaScript Essentials 1", link: "https://www.credly.com/badges/60140827-a72a-4582-b212-1f6426b424e1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Ethical Hacker", link: "https://www.credly.com/badges/d79f63b6-2442-4f50-8bab-c14ceb9b16c1/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Additional Certificate 1", link: "https://www.credly.com/badges/e9cb4b0d-03f9-4eb7-b20b-d384239cce44/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" },
             { title: "Additional Certificate 2", link: "https://www.credly.com/badges/44f9f862-3066-482f-b936-c80ecd403417/linked_in_profile", img: "https://via.placeholder.com/300x200?text=Certificate" }
@@ -462,15 +532,20 @@
         document.getElementById("about-title").innerHTML = t.aboutTitle;
         document.getElementById("about-text").innerHTML = t.aboutText;
         document.getElementById("skills-title").innerHTML = t.skillsTitle;
-        const skillsList = document.getElementById("skills-list");
-        skillsList.innerHTML = "";
-        t.skillsList.forEach(skill => {
-          const li = document.createElement("li");
-          li.textContent = skill;
-          skillsList.appendChild(li);
+        // تعبئة شبكة المهارات
+        const skillsGrid = document.getElementById("skills-grid");
+        skillsGrid.innerHTML = "";
+        t.skillsData.forEach(skill => {
+          const card = document.createElement("div");
+          card.className = "skill-card";
+          // استخدام صورة افتراضية للشعار
+          card.innerHTML = `<img src="https://via.placeholder.com/50?text=Logo" alt="${skill.title}">
+                            <h3>${skill.title}</h3>
+                            <p>${skill.company}</p>`;
+          skillsGrid.appendChild(card);
         });
         document.getElementById("certifications-title").innerHTML = t.certificationsTitle;
-        // تحديث شبكة الشهادات
+        // تعبئة شبكة الشهادات
         const certificatesGrid = document.getElementById("certificates-grid");
         certificatesGrid.innerHTML = "";
         t.certificates.forEach(cert => {
